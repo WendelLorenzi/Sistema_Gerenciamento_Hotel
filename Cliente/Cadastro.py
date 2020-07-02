@@ -1,5 +1,7 @@
 from tkinter import *
 import sys
+from Cliente import RegistraCliente
+from datetime import datetime
 
 class Cadastrar:
     def __init__(self):
@@ -113,13 +115,20 @@ class Cadastrar:
         root.mainloop()
 
     def Imprime(self):
-        print(str(self.EntryNome.get()))
-        print(str(self.EntryTel.get()))
-        print(str(self.EntryCpf.get()))
-        print(int(self.EntryTempo.get()))
-        print(int(self.EntryQuarto.get()))
-        print(self.Verify_check())
+        RegistraCliente((str(self.EntryNome.get())),
+        (str(self.EntryTel.get())),
+        (str(self.EntryCpf.get())),
+        (int(self.EntryTempo.get())),
+        (int(self.EntryQuarto.get())),
+        (self.Verify_check()),
+        (self.DataEntrada()),
+        '0k')
         self.ClearEntry()
+
+    def DataEntrada(self):
+        data_e_hora_atuais = datetime.now()
+        data_e_hora = data_e_hora_atuais.strftime('%d/%m/%Y %H:%M')
+        return data_e_hora
     
 
     def ClearEntry(self):

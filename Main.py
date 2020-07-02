@@ -5,6 +5,7 @@ from Cliente.Saida import DarSaida
 from Cliente.Info import InfoCliente
 from Sistema.Login import LoginAdmSistema
 from Sistema.Gerencial import ConfigSistema
+from Cliente.Cliente import PrintaMain
 
 class Hotel_Gerenciamento:
     def __init__(self):
@@ -82,6 +83,14 @@ class Hotel_Gerenciamento:
         self.containerListaC.configure(relief=GROOVE)
         self.containerListaC.configure(borderwidth='5')
 
+        self.ListaClientes= Text(self.containerListaC)
+        self.ListaClientes.place(relx=0.01, rely=0.1, relheight=0.88, relwidth=0.98)
+        self.ListaClientes.configure(text= PrintaMain)
+
+        self.LabelInfoCliente= Label(self.containerListaC)
+        self.LabelInfoCliente.place(relx=0.1, rely=0.01, height=40, width=350)
+        self.LabelInfoCliente.configure(font=("Times New Roman", 12, "bold"))
+        self.LabelInfoCliente.configure(text= 'Nome  /  Data de Entrada  /  Quarto  /  Pagamento ')
 
         root.mainloop()
 
