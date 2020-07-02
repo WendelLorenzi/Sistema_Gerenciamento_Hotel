@@ -40,15 +40,18 @@ class RegistraCliente:
     def RetornaListObj(self):
         listaObj= [self.getNome(), self.getTel(), self.getCpf(), self.getTempoH(), self.getNumeroQ(), self.getTipoQ(), self.getDataEntrada(), self.getSituacaoPagm()]
         return listaObj
-
-    # def InsereObjLista(self, NovaLista):
-    #     lista= []
-    #     lista.append(NovaLista)
         
 
     def PrintaMain(self):
         lista= self.RetornaListObj()
         listaAux= [lista[0], lista[6], lista[4], lista[7]]
         return listaAux
+
+    # def InsereObjLista(self):
+    #     lista= self.RetornaListObj()
+    #     listaAux= [lista[0], lista[6], lista[4], lista[7]]
+    #     listaMain= []
+    #     listaMain.append(listaAux)
+    #     return ListaMain
 
 
