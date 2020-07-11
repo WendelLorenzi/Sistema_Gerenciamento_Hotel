@@ -1,5 +1,8 @@
 from tkinter import *
 import sys
+import bcrypt
+from BD.Conecta_db import Banco 
+from Sistema.Financa import TelaGerenciaF
 
 class LoginAdmSistema:
     def __init__(self):
@@ -33,7 +36,7 @@ class LoginAdmSistema:
         self.LabelSenha.configure(text= 'Senha: ')
         self.LabelSenha.configure(background='#27408B')
 
-        self.EntrySenha= Entry(self.containerMaster)
+        self.EntrySenha= Entry(self.containerMaster, show='*')
         self.EntrySenha.place(relx=0.38, rely=0.3, width=200)
         self.EntrySenha.configure(font=self.fonte)
 
@@ -41,6 +44,7 @@ class LoginAdmSistema:
         self.BotaoSalvar.configure(text='''ENTRAR ''')
         self.BotaoSalvar.configure(font=("Times New Roman", 10, "bold"))
         self.BotaoSalvar.place(relx=0.5, rely=0.4, width=90)
+        self.BotaoSalvar.configure(command= self.verificaUser)
 
         self.BotaoSair= Button(self.containerMaster)
         self.BotaoSair.configure(text='''VOLTAR ''')
@@ -49,6 +53,60 @@ class LoginAdmSistema:
         self.BotaoSair.configure(command= root.destroy)
 
         root.mainloop()
+
+    def GeraHash(self, senha=1):
+        if(senha == 1):
+            hashed = bcrypt.hashpw(str(self.getSenha()).encode('utf-8'), bcrypt.gensalt())
+        else:
+            hashed = bcrypt.hashpw(str(senha).encode('utf-8'), bcrypt.gensalt())
+        return hashed
+    
+    def getUser(self):
+        return self.EntryUser.get()
+    def getSenha(self):
+        self.EntrySenha.get()
+    
+    def EnviaBD(self):
+        list= [self.getUser(), self.GeraHash()]
+        Banco().InsereUser(list)
+    
+    def verificaUser(self):
+        user= self.getUser()
+        if(len(user) != 0):
+            passou= Banco().VerificaUser(user)
+        if(passou == 'ok'):
+            print('ok')
+        else:
+            self.ErroEntrar(1)
+    
+    def verificaSenha(self):
+        senha= self.getSenha
+        if(len(senha) != 0):
+            hash= self.GeraHash(senha)
+            passouSh= Banco().BuscaHash(hash)
+            if(passouSh == 'ok'):
+                TelaGerenciaF()
+            else:
+                self.ErroEntrar(2)
+            
+    def ErroEntrar(self, caso):
+        if(caso == 1):
+            LabelErro= Label(self.containerMaster)
+            LabelErro.place(relx=0.2, rely=0.7, height=30, width=250)
+            LabelErro.configure(font=("Times New Roman", 10))
+            LabelErro.configure(text= 'Usuário não encontrado')
+            LabelErro.configure(background='#27408B')
+            self.EntryUser.delete(0, 'end')
+        if(caso == 2):
+            LabelErro= Label(self.containerMaster)
+            LabelErro.place(relx=0.2, rely=0.7, height=30, width=250)
+            LabelErro.configure(font=("Times New Roman", 10))
+            LabelErro.configure(text= 'Senha Errada')
+            LabelErro.configure(background='#27408B')
+            self.EntrySenha.delete(0, 'end')
+
+
+            
 
 
 if __name__ == '__main__':

@@ -84,7 +84,7 @@ class Hotel_Gerenciamento:
 
         self.ListaClientes= Text(self.containerListaC)
         self.ListaClientes.place(relx=0.01, rely=0.1, relheight=0.88, relwidth=0.98)
-        self.ListaClientes.insert(INSERT, RegistraCliente.ListaMain)
+       # self.ListaClientes.insert(INSERT, RegistraCliente.ListaMain)
 
         self.LabelInfoCliente= Label(self.containerListaC)
         self.LabelInfoCliente.place(relx=0.1, rely=0.01, height=40, width=350)

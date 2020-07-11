@@ -1,5 +1,5 @@
 import sys
-from Conecta_db import Banco
+from BD.Conecta_db import Banco 
 
 class RegistraCliente:
     def __init__(self, NomeH, TelH, CpfH, TempoH, NumeroQ, TipoQ, DataEntrada, Pagamento):
@@ -45,9 +45,9 @@ class RegistraCliente:
     
         
 
-    def ListaMain(self):
-        lista= self.RetornaListObj()
-        listaAux= [lista[0], lista[6], str(lista[4]), lista[7]]
-        return ('- '.join(map(str, listaAux)))
+    # def ListaMain(self):
+    #     lista= self.RetornaListObj()
+    #     listaAux= [lista[0], lista[6], str(lista[4]), lista[7]]
+    #     return ('- '.join(map(str, listaAux)))
 
 

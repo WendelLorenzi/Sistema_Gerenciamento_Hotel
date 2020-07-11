@@ -1,6 +1,6 @@
 from tkinter import *
 import sys
-from Cliente import RegistraCliente
+from Cliente.Cliente import RegistraCliente
 from datetime import datetime
 
 class Cadastrar:
