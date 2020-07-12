@@ -2,9 +2,9 @@ from tkinter import *
 import sys
 import bcrypt
 from BD.Conecta_db import Banco 
-from Sistema.Financa import TelaGerenciaF
 
-class LoginAdmSistema:
+
+class NewUser:
     def __init__(self):
         root= Tk()
         root.geometry("500x500")
@@ -44,7 +44,7 @@ class LoginAdmSistema:
         self.BotaoSalvar.configure(text='''ENTRAR ''')
         self.BotaoSalvar.configure(font=("Times New Roman", 10, "bold"))
         self.BotaoSalvar.place(relx=0.5, rely=0.4, width=90)
-        self.BotaoSalvar.configure(command= self.verificaUser)
+        self.BotaoSalvar.configure(command= self.EnviaBD)
 
         self.BotaoSair= Button(self.containerMaster)
         self.BotaoSair.configure(text='''VOLTAR ''')
@@ -54,8 +54,11 @@ class LoginAdmSistema:
 
         root.mainloop()
 
-    def GeraHash(self):
-        hashed = bcrypt.hashpw(str(self.getSenha()).encode('utf-8'), bcrypt.gensalt())
+    def GeraHash(self, senha='a'):
+        if(senha == 'a'):
+            hashed = bcrypt.hashpw(str(self.getSenha()).encode('utf-8'), bcrypt.gensalt())
+        else:
+            hashed = bcrypt.hashpw(str(senha).encode('utf-8'), bcrypt.gensalt())
         return hashed
     
     def getUser(self):
@@ -65,63 +68,28 @@ class LoginAdmSistema:
     
     def EnviaBD(self):
         list= [self.getUser(), self.GeraHash()]
-        Banco().InsereUser(list)
-    
-    def verificaUser(self):
-        user= self.getUser()
-        if(len(user) != 0):
-            passou= Banco().VerificaUser(user)
-        if(passou == 'ok'):
-            self.verificaSenha()
-        else:
+        inserido= Banco().InsereUser(list)
+        if (inserido != 1):
             self.ErroEntrar(1)
+        else:
+            self.ErroEntrar(2)
+
     
-    def verificaSenha(self):
-        senha= str(self.getSenha())
-        if(len(senha) != 0):
-            hash = bcrypt.hashpw(str(senha).encode('utf-8'), bcrypt.gensalt())
-            #print('Criou a hash')
-            print(hash)
-            passouSh= ()
-            passouSh= Banco().BuscaHash()
-            tam= len(passouSh)
-            print(passouSh)
-            print(tam)
-            i=0
-            while(i < tam):
-                hash=0
-                hash= passouSh[i]
-                if bcrypt.checkpw(senha, hash):
-                    print('O banco de dados continha o hash da senha')
-                    self.TelaGerenciaF()
-                    break
-            i= i + 1
-            self.NaoEncontrouHash()
-
-
-    def NaoEncontrouHash(self):
-        print('Não achou no banco')
-        self.ErroEntrar(2)
-            
     def ErroEntrar(self, caso):
         if(caso == 1):
             LabelErro= Label(self.containerMaster)
             LabelErro.place(relx=0.2, rely=0.7, height=30, width=250)
             LabelErro.configure(font=("Times New Roman", 10))
-            LabelErro.configure(text= 'Usuário não encontrado')
+            LabelErro.configure(text= 'Erro ao cadastrar no Banco de Dados')
             LabelErro.configure(background='#27408B')
             self.EntryUser.delete(0, 'end')
+            self.EntrySenha.delete(0, 'end')
         if(caso == 2):
             LabelErro= Label(self.containerMaster)
             LabelErro.place(relx=0.2, rely=0.7, height=30, width=250)
             LabelErro.configure(font=("Times New Roman", 10))
-            LabelErro.configure(text= 'Senha Errada')
+            LabelErro.configure(text= 'Usuário Cadastrado com Sucesso')
             LabelErro.configure(background='#27408B')
-            self.EntrySenha.delete(0, 'end')
-
-
-            
-
 
 if __name__ == '__main__':
-    LoginAdmSistema()
+    NewUser()

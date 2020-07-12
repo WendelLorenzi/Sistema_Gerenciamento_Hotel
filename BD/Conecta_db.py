@@ -34,6 +34,7 @@ class Banco:
         self.conn.commit()
         print('Dados inseridos com sucesso.')
         self.EncerraBD()
+        return 'ok'
 
     def VerificaUser(self, user):
         self.cursor.execute('''select 'ok'
@@ -86,14 +87,13 @@ class Banco:
     #     print('Tabela criada com sucesso.')
 
 
-    def BuscaHash(self, hash):
-            self.cursor.execute('''select 'ok'
-                            from UsersADM 
-                            where hash_senha= ?''', [hash])
+    def BuscaHash(self):
+            self.cursor.execute('''select hash_senha
+                            from UsersADM;''')
             for linha in self.cursor.fetchall():
                 print(linha)
-                if(len(linha) != 0):
-                    return 'ok'
+                # retorna uma tupla
+                return linha
             self.EncerraBD()
 # if __name__ == '__main__':
 #     Banco()
