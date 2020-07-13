@@ -78,25 +78,32 @@ class LoginAdmSistema:
     
     def verificaSenha(self):
         senha= str(self.getSenha())
-        if(len(senha) != 0):
-            hash = bcrypt.hashpw(str(senha).encode('utf-8'), bcrypt.gensalt())
-            #print('Criou a hash')
-            print(hash)
-            passouSh= ()
-            passouSh= Banco().BuscaHash()
-            tam= len(passouSh)
-            print(passouSh)
-            print(tam)
-            i=0
-            while(i < tam):
-                hash=0
-                hash= passouSh[i]
-                if bcrypt.checkpw(senha, hash):
-                    print('O banco de dados continha o hash da senha')
-                    self.TelaGerenciaF()
-                    break
-            i= i + 1
-            self.NaoEncontrouHash()
+        print(senha)
+        passouSh= ()
+        #if(len(senha) != 0):
+        hash = bcrypt.hashpw(senha, bcrypt.gensalt())
+        print('Criou a hash da senha: ', hash)
+        passouSh= Banco().BuscaHash()
+        tam= int(len(passouSh))
+        print('O que veio do banco: ', passouSh)
+        print(tam)
+        for i in [0,tam]:
+            hash_cod= passouSh[i]
+            hash_decod= hash_cod.decode('utf-8')
+            print('hash_decod', hash_decod)
+            if(bcrypt.checkpw(hash, hash_decod)):
+                print('O banco de dados continha o hash da senha')
+                self.TelaGerenciaF()
+                break
+            if(i == tam):
+                self.NaoEncontrouHash()
+                break
+                # if bcrypt.checkpw(hash, hash2):
+                #     print('O banco de dados continha o hash da senha')
+                #     self.TelaGerenciaF()
+                #     break
+            # i= i + 1
+            # self.NaoEncontrouHash()
 
 
     def NaoEncontrouHash(self):

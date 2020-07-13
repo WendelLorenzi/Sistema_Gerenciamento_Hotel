@@ -88,12 +88,12 @@ class Banco:
 
 
     def BuscaHash(self):
-            self.cursor.execute('''select hash_senha
-                            from UsersADM;''')
-            for linha in self.cursor.fetchall():
-                print(linha)
-                # retorna uma tupla
-                return linha
-            self.EncerraBD()
+        self.cursor.execute('''select hash_senha
+                        from UsersADM;''')
+        for linha in self.cursor.fetchall():
+            pass
+            # retorna uma tupla
+        return linha
+        self.EncerraBD()
 # if __name__ == '__main__':
 #     Banco()
