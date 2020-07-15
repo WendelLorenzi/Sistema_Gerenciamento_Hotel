@@ -60,8 +60,9 @@ class LoginAdmSistema:
     
     def getUser(self):
         return self.EntryUser.get()
+
     def getSenha(self):
-        self.EntrySenha.get()
+        return self.EntrySenha.get()
     
     def EnviaBD(self):
         list= [self.getUser(), self.GeraHash()]
@@ -69,6 +70,7 @@ class LoginAdmSistema:
     
     def verificaUser(self):
         user= self.getUser()
+        print(user)
         if(len(user) != 0):
             passou= Banco().VerificaUser(user)
         if(passou == 'ok'):
@@ -77,33 +79,27 @@ class LoginAdmSistema:
             self.ErroEntrar(1)
     
     def verificaSenha(self):
-        senha= str(self.getSenha())
+        senha= self.getSenha()
         print(senha)
         passouSh= ()
-        #if(len(senha) != 0):
-        hash = bcrypt.hashpw(senha, bcrypt.gensalt())
-        print('Criou a hash da senha: ', hash)
+        # Busca as hashes do banco e insere
         passouSh= Banco().BuscaHash()
-        tam= int(len(passouSh))
-        print('O que veio do banco: ', passouSh)
-        print(tam)
-        for i in [0,tam]:
-            hash_cod= passouSh[i]
-            hash_decod= hash_cod.decode('utf-8')
-            print('hash_decod', hash_decod)
-            if(bcrypt.checkpw(hash, hash_decod)):
+        for hash_separada in passouSh:
+            #passa a tupla de posição i da lista(passouSh) 
+            print('hash_banco: ', hash_separada[0])
+            achou= 0
+            if(self.CompareHash(senha, hash_separada[0]) == True):
                 print('O banco de dados continha o hash da senha')
-                self.TelaGerenciaF()
+                achou= 1
+                TelaGerenciaF()
                 break
-            if(i == tam):
-                self.NaoEncontrouHash()
-                break
-                # if bcrypt.checkpw(hash, hash2):
-                #     print('O banco de dados continha o hash da senha')
-                #     self.TelaGerenciaF()
-                #     break
-            # i= i + 1
-            # self.NaoEncontrouHash()
+                if(achou != 1):
+                    self.NaoEncontrouHash()
+    
+    def CompareHash(self, nome, hash):
+        verifica= bcrypt.checkpw(nome.encode('utf-8'), hash)
+        return verifica
+                
 
 
     def NaoEncontrouHash(self):

@@ -41,7 +41,7 @@ class NewUser:
         self.EntrySenha.configure(font=self.fonte)
 
         self.BotaoSalvar= Button(self.containerMaster)
-        self.BotaoSalvar.configure(text='''ENTRAR ''')
+        self.BotaoSalvar.configure(text='''SALVAR ''')
         self.BotaoSalvar.configure(font=("Times New Roman", 10, "bold"))
         self.BotaoSalvar.place(relx=0.5, rely=0.4, width=90)
         self.BotaoSalvar.configure(command= self.EnviaBD)
