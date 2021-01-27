@@ -1,4 +1,6 @@
-from tkinter import *
+# coding=utf-8
+
+from Tkinter import *
 import sys
 from Cliente.Cliente import RegistraCliente
 from datetime import datetime

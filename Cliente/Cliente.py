@@ -1,3 +1,5 @@
+# coding=utf-8
+
 import sys
 from BD.Conecta_db import Banco 
 
