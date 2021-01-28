@@ -1,0 +1,30 @@
+Projeto/
+Main.py
+|
+PacketHostel/
+    |_ __init__.py
+    |
+    BD/
+    |_ __init__.py
+    |___ Conecta_db.py
+    |
+    Cliente/
+    |_ __init__.py
+    |___ Cadastro.py
+    |___ Cliente.py
+    |___ Info.py
+    |___ Saida.py
+    |
+    Hotel/
+    |_ __init__.py
+    |___ Quartos.py
+    |
+    Sistema/
+    |_ __init__.py
+    |___ Financa.py
+    |___ Gerencial.py
+    |___ Login.py
+    |
+    |___ Financeiro/
+        |_ __init__.py
+        |___ NovoLogin.py

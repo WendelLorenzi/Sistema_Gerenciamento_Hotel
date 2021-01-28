@@ -1,7 +1,8 @@
 # coding=utf-8
 
 import sys
-from BD.Conecta_db import Banco 
+sys.path.append('../BD')
+from Conecta_db import Banco
 
 class RegistraCliente:
     def __init__(self, NomeH, TelH, CpfH, TempoH, NumeroQ, TipoQ, DataEntrada, Pagamento):

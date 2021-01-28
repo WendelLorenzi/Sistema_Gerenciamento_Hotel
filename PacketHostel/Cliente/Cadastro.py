@@ -2,7 +2,7 @@
 
 from Tkinter import *
 import sys
-from Cliente.Cliente import RegistraCliente
+from Cliente.Client import RegistraCliente
 from datetime import datetime
 
 class Cadastrar:
