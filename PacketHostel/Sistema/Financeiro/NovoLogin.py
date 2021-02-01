@@ -1,7 +1,11 @@
-from tkinter import *
+
+# coding=utf-8
+
+from Tkinter import *
 import sys
 import bcrypt
-from BD.Conecta_db import Banco 
+sys.path.append('PacketHostel/DB')
+from Conecta_db import Banco 
 
 
 class NewUser:

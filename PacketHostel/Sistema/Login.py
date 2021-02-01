@@ -3,8 +3,9 @@
 from Tkinter import *
 import sys
 import bcrypt
-from BD.Conecta_db import Banco 
-from Sistema.Financa import TelaGerenciaF
+sys.path.append('PacketHostel/BD')
+from Conecta_db import Banco 
+from Financa import TelaGerenciaF
 
 class LoginAdmSistema:
     def __init__(self):

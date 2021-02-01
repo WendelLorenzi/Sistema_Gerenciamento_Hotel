@@ -2,7 +2,7 @@
 
 from Tkinter import *
 import sys
-from Cliente.Client import RegistraCliente
+from Client import RegistraCliente
 from datetime import datetime
 
 class Cadastrar:
@@ -147,6 +147,9 @@ class Cadastrar:
         if(self.Checkvar1.get() != 0): return 1
         if(self.Checkvar2.get() != 0): return 2
         if(self.Checkvar3.get() != 0): return 3
+
+    def chamar():
+        print('Fui chamado!')
 
 
 if __name__ == '__main__':

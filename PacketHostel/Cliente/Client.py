@@ -1,7 +1,7 @@
 # coding=utf-8
 
 import sys
-sys.path.append('../BD')
+sys.path.append('PacketHostel/BD')
 from Conecta_db import Banco
 
 class RegistraCliente:
