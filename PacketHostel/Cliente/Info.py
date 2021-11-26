@@ -1,6 +1,6 @@
 # coding=utf-8
 
-from Tkinter import *
+from tkinter import *
 import sys
 
 class InfoCliente:

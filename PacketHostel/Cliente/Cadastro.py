@@ -1,8 +1,8 @@
 # coding=utf-8
 
-from Tkinter import *
+from tkinter import *
 import sys
-from Client import RegistraCliente
+from PacketHostel.Cliente.Client import RegistraCliente
 from datetime import datetime
 
 class Cadastrar:

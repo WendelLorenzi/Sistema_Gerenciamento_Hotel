@@ -2,7 +2,7 @@
 
 import sys
 sys.path.append('PacketHostel/BD')
-from Conecta_db import Banco
+from PacketHostel.BD.Conecta_db import Banco
 
 class RegistraCliente:
     def __init__(self, NomeH, TelH, CpfH, TempoH, NumeroQ, TipoQ, DataEntrada, Pagamento):
@@ -45,8 +45,8 @@ class RegistraCliente:
         listaObj= [self.getNome(), self.getTel(), self.getCpf(), self.getTempoH(), self.getNumeroQ(), self.getTipoQ(), self.getDataEntrada(), self.getSituacaoPagm()]
         Banco().InsereLista(listaObj)
         return listaObj
-    
-        
+
+  
 
     # def ListaMain(self):
     #     lista= self.RetornaListObj()

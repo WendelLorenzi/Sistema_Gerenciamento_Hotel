@@ -1,9 +1,8 @@
 # coding=utf-8
 
-from Tkinter import *
+from tkinter import *
 import sys
-sys.path.append('PacketHostel/Sistema/Financeiro')
-from NovoLogin import NewUser
+from PacketHostel.Sistema.Financeiro.NovoLogin import NewUser
 
 class TelaGerenciaF:
     def __init__(self):

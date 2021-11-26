@@ -1,11 +1,11 @@
 # coding=utf-8
 
-from Tkinter import *
+from tkinter import *
 import sys
 import bcrypt
 sys.path.append('PacketHostel/BD')
-from Conecta_db import Banco 
-from Financa import TelaGerenciaF
+from PacketHostel.BD.Conecta_db import Banco 
+from PacketHostel.Sistema.Financa import TelaGerenciaF
 
 class LoginAdmSistema:
     def __init__(self):
