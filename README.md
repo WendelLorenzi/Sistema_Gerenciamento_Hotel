@@ -6,7 +6,7 @@
    <br> 
    <i>Cadastro Clientes ao Dar Entrada</i>
    <br>
-   <i> Ao Dar Saída o atendente busca o cliente e após éredirecionado para "tela de pagamento"</i>
+   <i> Ao Dar Saída o atendente busca o cliente e após, é redirecionado para "tela de pagamento"</i>
    <br>
    <i> Busca Clientes Cadastrados no Banco de dados (Sqlitle3) e traz informações</i>
       <br>
